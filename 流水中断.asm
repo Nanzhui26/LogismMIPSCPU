@@ -2,9 +2,9 @@
 #1st section, auto decrement counter and display
 #2nd section: ccmb instruction test
 .text
-addi $sp, $zero, 0xffff	#开辟栈空间
 addi $s1,$zero,0x2000      #initial nubmer
 addi $v0,$zero,34    
+addi $sp, $zero, 0xfff		#开辟栈空间 
 counter_branch:
 add $a0,$0,$s1          
 syscall                 #display number

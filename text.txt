@@ -2,9 +2,9 @@
 #1st section, auto decrement counter and display
 #2nd section: ccmb instruction test
 .text
-addi $sp, $zero, 0xffff	#å¼€è¾Ÿæ ˆç©ºé—´
 addi $s1,$zero,0x2000      #initial nubmer
 addi $v0,$zero,34    
+addi $sp, $zero, 0xfff		#¿ª±ÙÕ»¿Õ¼ä 
 counter_branch:
 add $a0,$0,$s1          
 syscall                 #display number
@@ -14,10 +14,10 @@ addi $v0,$zero,50
 syscall                 #pause
 ##############################################
 # insert your ccmb benchmark program here!!!
-# ä¸­æ–­ç¨‹åº1
+# ÖĞ¶Ï³ÌĞò1
 ##############################################
 
-addi $sp, $sp,-4#å…¥å£åœ°å€1
+addi $sp, $sp,-4#Èë¿ÚµØÖ·1
 sw $v0, 0($sp)
 addi $sp, $sp,-4
 sw $a0, 0($sp)
@@ -33,10 +33,10 @@ addi $sp, $sp,-4
 sw $s6, 0($sp)
 
 
-addi $s6,$zero,1       #ä¸­æ–­å·1,2,3   ä¸åŒä¸­æ–­å·æ˜¾ç¤ºå€¼ä¸ä¸€æ ·
+addi $s6,$zero,1       #ÖĞ¶ÏºÅ1,2,3   ²»Í¬ÖĞ¶ÏºÅÏÔÊ¾Öµ²»Ò»Ñù
 
-addi $s4,$zero,6      #å¾ªç¯æ¬¡æ•°åˆå§‹å€¼  
-addi $s5,$zero,1       #è®¡æ•°å™¨ç´¯åŠ å€¼
+addi $s4,$zero,6      #Ñ­»·´ÎÊı³õÊ¼Öµ  
+addi $s5,$zero,1       #¼ÆÊıÆ÷ÀÛ¼ÓÖµ
 IntLoop1:
 add $s0,$zero,$s6   
 
@@ -50,7 +50,7 @@ addi   $v0,$0,34         # display hex
 syscall                 # we are out of here.   
 
 bne $s0, $zero, IntLeftShift1
-sub $s4,$s4,$s5      #å¾ªç¯æ¬¡æ•°é€’å‡
+sub $s4,$s4,$s5      #Ñ­»·´ÎÊıµİ¼õ
 bne $s4, $zero, IntLoop1
 
 addi   $v0,$zero,10         # system call for exit
@@ -70,14 +70,14 @@ addiu $sp,$sp,4
 lw $v0,0($sp)
 addiu $sp,$sp,4
 
-eret						# ä¸­æ–­è¿”å›
+eret						# ÖĞ¶Ï·µ»Ø
 syscall                  # we are out of here. 
 
 ###########################################
-#ä¸­æ–­ç¨‹åº2
+#ÖĞ¶Ï³ÌĞò2
 ###########################################
 
-addi $sp, $sp,-4#å…¥å£åœ°å€2
+addi $sp, $sp,-4#Èë¿ÚµØÖ·2
 sw $v0, 0($sp)
 addi $sp, $sp,-4
 sw $a0, 0($sp)
@@ -92,10 +92,10 @@ sw $s5, 0($sp)
 addi $sp, $sp,-4
 sw $s6, 0($sp)
 
-addi $s6,$zero,2       #ä¸­æ–­å·1,2,3   ä¸åŒä¸­æ–­å·æ˜¾ç¤ºå€¼ä¸ä¸€æ ·
+addi $s6,$zero,2       #ÖĞ¶ÏºÅ1,2,3   ²»Í¬ÖĞ¶ÏºÅÏÔÊ¾Öµ²»Ò»Ñù
 
-addi $s4,$zero,6      #å¾ªç¯æ¬¡æ•°åˆå§‹å€¼  
-addi $s5,$zero,1       #è®¡æ•°å™¨ç´¯åŠ å€¼
+addi $s4,$zero,6      #Ñ­»·´ÎÊı³õÊ¼Öµ  
+addi $s5,$zero,1       #¼ÆÊıÆ÷ÀÛ¼ÓÖµ
 IntLoop2:
 add $s0,$zero,$s6   
 
@@ -109,7 +109,7 @@ addi   $v0,$0,34         # display hex
 syscall                 # we are out of here.   
 
 bne $s0, $zero, IntLeftShift2
-sub $s4,$s4,$s5      #å¾ªç¯æ¬¡æ•°é€’å‡
+sub $s4,$s4,$s5      #Ñ­»·´ÎÊıµİ¼õ
 bne $s4, $zero, IntLoop2
 
 addi   $v0,$zero,10         # system call for exit
@@ -129,14 +129,14 @@ addiu $sp,$sp,4
 lw $v0,0($sp)
 addiu $sp,$sp,4
 
-eret						# ä¸­æ–­è¿”å›
+eret						# ÖĞ¶Ï·µ»Ø
 syscall                  # we are out of here. 
 
 ###################################################
-#ä¸­æ–­ç¨‹åº3
+#ÖĞ¶Ï³ÌĞò3
 ###################################################
 
-addi $sp, $sp,-4#å…¥å£åœ°å€3
+addi $sp, $sp,-4#Èë¿ÚµØÖ·3
 sw $v0, 0($sp)
 addi $sp, $sp,-4
 sw $a0, 0($sp)
@@ -151,10 +151,10 @@ sw $s5, 0($sp)
 addi $sp, $sp,-4
 sw $s6, 0($sp)
 
-addi $s6,$zero,3       #ä¸­æ–­å·1,2,3   ä¸åŒä¸­æ–­å·æ˜¾ç¤ºå€¼ä¸ä¸€æ ·
+addi $s6,$zero,3       #ÖĞ¶ÏºÅ1,2,3   ²»Í¬ÖĞ¶ÏºÅÏÔÊ¾Öµ²»Ò»Ñù
 
-addi $s4,$zero,6      #å¾ªç¯æ¬¡æ•°åˆå§‹å€¼  
-addi $s5,$zero,1       #è®¡æ•°å™¨ç´¯åŠ å€¼
+addi $s4,$zero,6      #Ñ­»·´ÎÊı³õÊ¼Öµ  
+addi $s5,$zero,1       #¼ÆÊıÆ÷ÀÛ¼ÓÖµ
 IntLoop3:
 add $s0,$zero,$s6   
 
@@ -168,7 +168,7 @@ addi   $v0,$0,34         # display hex
 syscall                 # we are out of here.   
 
 bne $s0, $zero, IntLeftShift3
-sub $s4,$s4,$s5      #å¾ªç¯æ¬¡æ•°é€’å‡
+sub $s4,$s4,$s5      #Ñ­»·´ÎÊıµİ¼õ
 bne $s4, $zero, IntLoop3
 
 addi   $v0,$zero,10         # system call for exit
@@ -188,7 +188,7 @@ addiu $sp,$sp,4
 lw $v0,0($sp)
 addiu $sp,$sp,4
 
-eret						# ä¸­æ–­è¿”å›
+eret						# ÖĞ¶Ï·µ»Ø
 syscall                  # we are out of here. 
 
 addi $v0,$zero,10
