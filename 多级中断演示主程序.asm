@@ -4,7 +4,9 @@
 .text
 
 addi $s1,$zero,0x2000      #initial nubmer
-addi $v0,$zero,34    
+addi $v0,$zero,34  
+add $sp,$0,$0
+addi $sp, $zero, 0xfffff		#开辟栈空间 
 counter_branch:
 add $a0,$0,$s1          
 syscall                 #display number
@@ -17,8 +19,8 @@ syscall                 #pause
 # 中断程序1
 ##############################################
 
-addi $sp, $zero, 0xfffff	#入口地址1
-addi $sp, $sp,-4
+	
+addi $sp, $sp,-4		#入口地址1
 sw $v0, 0($sp)
 addi $sp, $sp,-4
 sw $a0, 0($sp)
@@ -32,6 +34,10 @@ addi $sp, $sp,-4
 sw $s5, 0($sp)
 addi $sp, $sp,-4
 sw $s6, 0($sp)
+#保护EPC
+mfc0 $s2,$0
+addi $sp, $sp,-4
+sw $s2, 0($sp)
 
 
 addi $s6,$zero,1       #中断号1,2,3   不同中断号显示值不一样
@@ -56,6 +62,11 @@ bne $s4, $zero, IntLoop1
 
 addi   $v0,$zero,10         # system call for exit
 
+#恢复EPC
+lw $s2, 0($sp)
+addiu $sp, $sp,4
+mtc0 $s2,$0
+
 lw $s6,0($sp)
 addiu $sp,$sp,4
 lw $s5,0($sp)
@@ -77,9 +88,8 @@ syscall                  # we are out of here.
 ###########################################
 #中断程序2
 ###########################################
-
-addi $sp, $zero, 0xfffff		#入口地址2
-addi $sp, $sp,-4
+	
+addi $sp, $sp,-4		#入口地址2
 sw $v0, 0($sp)
 addi $sp, $sp,-4
 sw $a0, 0($sp)
@@ -93,6 +103,11 @@ addi $sp, $sp,-4
 sw $s5, 0($sp)
 addi $sp, $sp,-4
 sw $s6, 0($sp)
+#保护EPC
+mfc0 $s2,$0
+addi $sp, $sp,-4
+sw $s2, 0($sp)
+
 
 addi $s6,$zero,2       #中断号1,2,3   不同中断号显示值不一样
 
@@ -116,6 +131,11 @@ bne $s4, $zero, IntLoop2
 
 addi   $v0,$zero,10         # system call for exit
 
+#恢复EPC
+lw $s2, 0($sp)
+addiu $sp, $sp,4
+mtc0 $s2,$0
+
 lw $s6,0($sp)
 addiu $sp,$sp,4
 lw $s5,0($sp)
@@ -131,15 +151,16 @@ addiu $sp,$sp,4
 lw $v0,0($sp)
 addiu $sp,$sp,4
 
+
+
 eret						# 中断返回
 syscall                  # we are out of here. 
 
 ###################################################
 #中断程序3
 ###################################################
-
-addi $sp, $zero, 0xfffff		#入口地址3
-addi $sp, $sp,-4
+		
+addi $sp, $sp,-4			#入口地址3
 sw $v0, 0($sp)
 addi $sp, $sp,-4
 sw $a0, 0($sp)
@@ -153,6 +174,12 @@ addi $sp, $sp,-4
 sw $s5, 0($sp)
 addi $sp, $sp,-4
 sw $s6, 0($sp)
+
+#保护EPC
+mfc0 $s2,$0
+addi $sp, $sp,-4
+sw $s2, 0($sp)
+
 
 addi $s6,$zero,3       #中断号1,2,3   不同中断号显示值不一样
 
@@ -176,6 +203,11 @@ bne $s4, $zero, IntLoop3
 
 addi   $v0,$zero,10         # system call for exit
 
+#恢复EPC
+lw $s2, 0($sp)
+addiu $sp, $sp,4
+mtc0 $s2,$0
+
 lw $s6,0($sp)
 addiu $sp,$sp,4
 lw $s5,0($sp)
@@ -190,6 +222,8 @@ lw $a0,0($sp)
 addiu $sp,$sp,4
 lw $v0,0($sp)
 addiu $sp,$sp,4
+
+
 
 eret						# 中断返回
 syscall                  # we are out of here. 
